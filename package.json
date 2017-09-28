@@ -4,7 +4,7 @@
   "description": "This is the front end application of a client facing application for a medical system",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "git://github.com/meetantariksh/MedClientAppFrontEnd.git"
   },
   "engines": {
     "npm": ">=3",
