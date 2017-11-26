@@ -6,9 +6,13 @@
 
 import React from 'react';
 // import styled from 'styled-components';
+import runFunc from '../../../externalJS/agency';
 
 
 class Banner extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount(){
+    runFunc();
+  }
   render() {
     return (
       <div>

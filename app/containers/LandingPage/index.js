@@ -23,6 +23,7 @@ import ServicesComponent from '../../components/LandingPageComponents/ServicesCo
 import '../../styles/LandingPage/agency.min.css';
 
 export class LandingPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
   render() {
     return (
       <div id='page-top'>
@@ -30,10 +31,10 @@ export class LandingPage extends React.Component { // eslint-disable-line react/
           <title>Your Health</title>
           <meta name="description" content="Description of LandingPage" />
         </Helmet>
-        
+        <script src="agency.min.js"></script>
         <BannerComponent/>
         <ServicesComponent/>
-        
+
       </div>
 
     );

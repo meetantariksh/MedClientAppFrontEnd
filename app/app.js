@@ -32,7 +32,7 @@ import 'file-loader?name=[name].[ext]!./styles/LandingPage/vendor/jquery/jquery.
 import 'file-loader?name=[name].[ext]!./styles/LandingPage/vendor/jquery-easing/jquery.easing.min';
 import 'file-loader?name=[name].[ext]!./styles/LandingPage/vendor/bootstrap/js/bootstrap.min';
 import 'file-loader?name=[name].[ext]!./styles/LandingPage/vendor/bootstrap/js/bootstrap.bundle.min';
-import 'file-loader?name=[name].[ext]!./externalJS/agency';
+import 'file-loader?name=[name].[ext]!./externalJS/agency.min';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
