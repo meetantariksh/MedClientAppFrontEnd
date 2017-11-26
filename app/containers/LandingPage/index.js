@@ -17,18 +17,25 @@ import makeSelectLandingPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
+import BannerComponent from '../../components/LandingPageComponents/Banner/Loadable';
+import ServicesComponent from '../../components/LandingPageComponents/ServicesComponent/Loadable';
+
+import '../../styles/LandingPage/agency.min.css';
+
 export class LandingPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
+      <div id='page-top'>
         <Helmet>
           <title>Your Health</title>
           <meta name="description" content="Description of LandingPage" />
         </Helmet>
-        <div>
-          <h1>This is the landing page...</h1>
-        </div>
+        
+        <BannerComponent/>
+        <ServicesComponent/>
+        
       </div>
+
     );
   }
 }

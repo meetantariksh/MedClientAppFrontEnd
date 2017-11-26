@@ -27,6 +27,12 @@ import LanguageProvider from 'containers/LanguageProvider';
 import '!file-loader?name=[name].[ext]!./images/icon.ico';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess';
+
+import 'file-loader?name=[name].[ext]!./styles/LandingPage/vendor/jquery/jquery.min';
+import 'file-loader?name=[name].[ext]!./styles/LandingPage/vendor/jquery-easing/jquery.easing.min';
+import 'file-loader?name=[name].[ext]!./styles/LandingPage/vendor/bootstrap/js/bootstrap.min';
+import 'file-loader?name=[name].[ext]!./styles/LandingPage/vendor/bootstrap/js/bootstrap.bundle.min';
+import 'file-loader?name=[name].[ext]!./externalJS/agency';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
@@ -35,7 +41,9 @@ import configureStore from './configureStore';
 import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
-import './global-styles';
+// import './global-styles';
+import './styles/LandingPage/vendor/bootstrap/css/bootstrap.min.css';
+import './styles/LandingPage/vendor/font-awesome/css/font-awesome.min.css';
 
 // Create redux store with history
 const initialState = {};
