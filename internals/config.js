@@ -38,6 +38,13 @@ const ReactBoilerplate = {
 
       // The path where the DLL manifest and bundle will get built
       path: resolve('../node_modules/react-boilerplate-dlls'),
+
+      plugins: [
+        new webpack.ProvidePlugin({
+           $: "jquery",
+           jQuery: "jquery"
+       })
+    ]
     },
 
     entry(pkg) {
