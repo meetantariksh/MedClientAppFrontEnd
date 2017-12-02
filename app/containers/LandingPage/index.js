@@ -10,19 +10,37 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import isEmpty from 'lodash/isEmpty';
+import isArray from 'lodash/isArray';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectLandingPage from './selectors';
+import {
+  makeSelectLoadingRecomendations,
+  makeSelectLoadRecomendationsComplete,
+  makeSelectRecomendationsError,
+  makeSelectRecomendationsData
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
 import BannerComponent from '../../components/LandingPageComponents/Banner/Loadable';
 import ServicesComponent from '../../components/LandingPageComponents/ServicesComponent/Loadable';
+import RecomendationComponent from '../../components/LandingPageComponents/RecomendationComponent/Loadable';
+
+import {
+  loadRecomendations
+} from './actions';
+
+import CookingLoader from'../../components/LoadingComponents/CookingLoader';
 
 import '../../styles/LandingPage/agency.min.css';
 
 export class LandingPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  componentWillMount() {
+    this.props.dispatch(loadRecomendations());
+  }
 
   render() {
     return (
@@ -34,6 +52,16 @@ export class LandingPage extends React.Component { // eslint-disable-line react/
         <script src="agency.min.js"></script>
         <BannerComponent/>
         <ServicesComponent/>
+        {
+          !this.props.loadRecomendations && this.props.loadRecomendationsComplete && !isEmpty(JSON.parse(this.props.loadRecomendationsData)) && 
+          <RecomendationComponent
+            recomendations={JSON.parse(this.props.loadRecomendationsData)}
+          />
+        }
+        {
+          this.props.loadRecomendations && 
+          <CookingLoader/>
+        }
 
       </div>
 
@@ -46,7 +74,10 @@ LandingPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  landingpage: makeSelectLandingPage(),
+  loadRecomendations: makeSelectLoadingRecomendations(),
+  loadRecomendationsComplete: makeSelectLoadRecomendationsComplete(),
+  loadRecomendationsError: makeSelectRecomendationsError(),
+  loadRecomendationsData: makeSelectRecomendationsData()
 });
 
 function mapDispatchToProps(dispatch) {
