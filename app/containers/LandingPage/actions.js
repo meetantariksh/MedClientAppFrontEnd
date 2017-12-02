@@ -23,7 +23,7 @@ export function loadRecomendations() {
   };
 }
 
-export function loadRecomendationsComplete() {
+export function loadRecomendationsComplete(recomendations) {
   return {
     type: LOAD_RECOMENDATIONS_COMPLETE,
     recomendations

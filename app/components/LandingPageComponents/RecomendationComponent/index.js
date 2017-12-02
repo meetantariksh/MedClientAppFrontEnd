@@ -4,8 +4,10 @@
 *
 */
 
-import React, { ReactPropTypes } from 'react';
+import React from 'react';
 
+import '../../../styles/LandingPage/agency.min.css';
+const docImage = require('../../../images/LandingPage/about/4.jpg');
 
 class RecomendationComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -26,31 +28,31 @@ class RecomendationComponent extends React.PureComponent { // eslint-disable-lin
                   {
                     this.props.recomendations.map(
                       function(recomendation, index){
-                        return <div>
-                                  <li>
+                        return (
+                                  <li className={((index+1)%2!=0 ? '':'timeline-inverted')}>
                                     <div className="timeline-image">
                                       {
-                                        recomendation.imageUrl || recomendation.imageUrl !== '' && <img className="rounded-circle img-fluid" src={recomendation.imageUrl} alt=""/>
+                                        (recomendation.imageUrl || recomendation.imageUrl !== '') && <img className="rounded-circle img-fluid" src={recomendation.imageUrl} alt=""/>
                                       }
                                       {
-                                        !recomendation.imageUrl || recomendation.imageUrl === '' && <img className="rounded-circle img-fluid" src="img/about/1.jpg" alt=""/>
+                                        (!recomendation.imageUrl || recomendation.imageUrl === '') && <img className="rounded-circle img-fluid" src={docImage} alt=""/>
                                       }
                                     </div>
                                     <div className="timeline-panel">
                                       <div className="timeline-heading">
                                         <h4>{recomendation.name}</h4>
-                                        <h3 className="subheading">{recomendation.qualification}</h3>
+                                        <h5 className="subheading">{recomendation.qualification}</h5>
                                       </div>
                                       <div className="timeline-body">
                                         <p className="text-muted">{recomendation.recomendationQuote}</p>
                                       </div>
                                     </div>
                                   </li>
-                              </div>
+                              );
                       }
                     )
                   }
-                  
+
                   <li className="timeline-inverted">
                     <div className="timeline-image">
                       <h4>Be Part
@@ -69,7 +71,7 @@ class RecomendationComponent extends React.PureComponent { // eslint-disable-lin
 }
 
 RecomendationComponent.propTypes = {
-    recomendations: ReactPropTypes.obect.isRequired,
+    recomendations: React.PropTypes.array.isRequired,
 };
 
 export default RecomendationComponent;

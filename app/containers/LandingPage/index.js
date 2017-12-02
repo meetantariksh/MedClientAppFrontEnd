@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import isEmpty from 'lodash/isEmpty';
+import isArray from 'lodash/isArray';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -37,7 +39,7 @@ import '../../styles/LandingPage/agency.min.css';
 export class LandingPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
-    this.props.dispatch(loadRecomendations);
+    this.props.dispatch(loadRecomendations());
   }
 
   render() {
@@ -50,7 +52,16 @@ export class LandingPage extends React.Component { // eslint-disable-line react/
         <script src="agency.min.js"></script>
         <BannerComponent/>
         <ServicesComponent/>
-        <CookingLoader/>
+        {
+          !this.props.loadRecomendations && this.props.loadRecomendationsComplete && !isEmpty(JSON.parse(this.props.loadRecomendationsData)) && 
+          <RecomendationComponent
+            recomendations={JSON.parse(this.props.loadRecomendationsData)}
+          />
+        }
+        {
+          this.props.loadRecomendations && 
+          <CookingLoader/>
+        }
 
       </div>
 
@@ -63,7 +74,10 @@ LandingPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  landingpage: makeSelectLandingPage(),
+  loadRecomendations: makeSelectLoadingRecomendations(),
+  loadRecomendationsComplete: makeSelectLoadRecomendationsComplete(),
+  loadRecomendationsError: makeSelectRecomendationsError(),
+  loadRecomendationsData: makeSelectRecomendationsData()
 });
 
 function mapDispatchToProps(dispatch) {

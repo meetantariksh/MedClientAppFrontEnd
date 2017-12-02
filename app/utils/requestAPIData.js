@@ -1,10 +1,7 @@
 import axios from 'axios';
 
 function parseJSON(response) {
-  if (response.status === 204 || response.status === 205) {
-    return null;
-  }
-  return response.json();
+  return JSON.stringify(response.data);
 }
 
 function checkStatus(response) {
@@ -17,7 +14,7 @@ function checkStatus(response) {
   throw error;
 }
 
-export default function requestGetAPIData(url) {
+export function requestGetAPIData(url) {
   return axios.get(url)
     .then(checkStatus)
     .then(parseJSON);

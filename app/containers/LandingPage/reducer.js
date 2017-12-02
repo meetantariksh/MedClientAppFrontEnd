@@ -35,7 +35,7 @@ function landingPageReducer(state = initialState, action) {
       return state
         .set('loaading_recomendations', false)
         .set('load_recomendations_complete', false)
-        .set('load_recomendations_error', trues);
+        .set('load_recomendations_error', true);
     default:
       return state;
   }
