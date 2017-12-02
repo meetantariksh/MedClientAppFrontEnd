@@ -13,16 +13,32 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectLandingPage from './selectors';
+import {
+  makeSelectLoadingRecomendations,
+  makeSelectLoadRecomendationsComplete,
+  makeSelectRecomendationsError,
+  makeSelectRecomendationsData
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
 import BannerComponent from '../../components/LandingPageComponents/Banner/Loadable';
 import ServicesComponent from '../../components/LandingPageComponents/ServicesComponent/Loadable';
+import RecomendationComponent from '../../components/LandingPageComponents/RecomendationComponent/Loadable';
+
+import {
+  loadRecomendations
+} from './actions';
+
+import CookingLoader from'../../components/LoadingComponents/CookingLoader';
 
 import '../../styles/LandingPage/agency.min.css';
 
 export class LandingPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  componentWillMount() {
+    this.props.dispatch(loadRecomendations);
+  }
 
   render() {
     return (
@@ -34,6 +50,7 @@ export class LandingPage extends React.Component { // eslint-disable-line react/
         <script src="agency.min.js"></script>
         <BannerComponent/>
         <ServicesComponent/>
+        <CookingLoader/>
 
       </div>
 
