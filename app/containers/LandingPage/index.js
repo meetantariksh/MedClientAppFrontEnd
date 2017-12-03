@@ -19,7 +19,11 @@ import {
   makeSelectLoadingRecomendations,
   makeSelectLoadRecomendationsComplete,
   makeSelectRecomendationsError,
-  makeSelectRecomendationsData
+  makeSelectRecomendationsData,
+  makeSelectLoadingNewsHeadLines,
+  makeSelectLoadNewsHeadLinesComplete,
+  makeSelectNewsHeadLinesError,
+  makeSelectNewsHeadLinesData
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -27,9 +31,11 @@ import saga from './saga';
 import BannerComponent from '../../components/LandingPageComponents/Banner/Loadable';
 import ServicesComponent from '../../components/LandingPageComponents/ServicesComponent/Loadable';
 import RecomendationComponent from '../../components/LandingPageComponents/RecomendationComponent/Loadable';
+import MedicalNewsComponent from '../../components/LandingPageComponents/MedicalNewsComponent/Loadable';
 
 import {
-  loadRecomendations
+  loadRecomendations,
+  loadNewsHeadLines
 } from './actions';
 
 import CookingLoader from'../../components/LoadingComponents/CookingLoader';
@@ -40,6 +46,7 @@ export class LandingPage extends React.Component { // eslint-disable-line react/
 
   componentWillMount() {
     this.props.dispatch(loadRecomendations());
+    this.props.dispatch(loadNewsHeadLines());
   }
 
   render() {
@@ -49,7 +56,6 @@ export class LandingPage extends React.Component { // eslint-disable-line react/
           <title>Your Health</title>
           <meta name="description" content="Description of LandingPage" />
         </Helmet>
-        <script src="agency.min.js"></script>
         <BannerComponent/>
         <ServicesComponent/>
         {
@@ -60,6 +66,16 @@ export class LandingPage extends React.Component { // eslint-disable-line react/
         }
         {
           this.props.loadRecomendations && 
+          <CookingLoader/>
+        }
+        {
+          !this.props.loadNews && this.props.loadNewsComplete && !isEmpty((JSON.parse(this.props.newsData)).articles) && 
+          <MedicalNewsComponent
+            newsArray={((JSON.parse(this.props.newsData)).articles)}
+          />
+        }
+        {
+          this.props.loadNews && 
           <CookingLoader/>
         }
 
@@ -77,7 +93,11 @@ const mapStateToProps = createStructuredSelector({
   loadRecomendations: makeSelectLoadingRecomendations(),
   loadRecomendationsComplete: makeSelectLoadRecomendationsComplete(),
   loadRecomendationsError: makeSelectRecomendationsError(),
-  loadRecomendationsData: makeSelectRecomendationsData()
+  loadRecomendationsData: makeSelectRecomendationsData(),
+  loadNews: makeSelectLoadingNewsHeadLines(),
+  loadNewsComplete: makeSelectLoadNewsHeadLinesComplete(),
+  loadNewsError: makeSelectNewsHeadLinesError(),
+  newsData: makeSelectNewsHeadLinesData()
 });
 
 function mapDispatchToProps(dispatch) {

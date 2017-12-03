@@ -1,10 +1,13 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import {
-  LOAD_RECOMENDATIONS
+  LOAD_RECOMENDATIONS,
+  LOAD_NEWS_HEADLINES
 } from './constants';
 import{
   loadRecomendationsComplete,
-  loadRecomendationsError
+  loadRecomendationsError,
+  loadNewsHeadLinesComplete,
+  loadNewsHeadLinesError
 } from './actions';
 import{
   requestGetAPIData
@@ -21,7 +24,19 @@ export function* loadRecomendations(){
   }
 }
 
+export function* loadNewsHeadLines(){
+  const apiUrl = 'http://localhost:8080/getNewsHeadlines';
+  try {
+    let newsHeadLines = yield call(requestGetAPIData, apiUrl);
+    yield put(loadNewsHeadLinesComplete(newsHeadLines));
+  } catch (err) {
+    console.log(err);
+    yield put(loadNewsHeadLinesError());
+  }
+}
+
 // Individual exports for testing
 export default function* landingPageDefaultSaga() {
   yield takeLatest(LOAD_RECOMENDATIONS, loadRecomendations);
+  yield takeLatest(LOAD_NEWS_HEADLINES, loadNewsHeadLines);
 }
