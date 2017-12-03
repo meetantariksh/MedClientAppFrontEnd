@@ -63,7 +63,7 @@ class ContactUsComponent extends React.PureComponent { // eslint-disable-line re
       });
     }
     if(validForm){
-      console.log('Form Valid');
+      
     }
   }
 
