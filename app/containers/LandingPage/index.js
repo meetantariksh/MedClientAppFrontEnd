@@ -32,6 +32,7 @@ import BannerComponent from '../../components/LandingPageComponents/Banner/Loada
 import ServicesComponent from '../../components/LandingPageComponents/ServicesComponent/Loadable';
 import RecomendationComponent from '../../components/LandingPageComponents/RecomendationComponent/Loadable';
 import MedicalNewsComponent from '../../components/LandingPageComponents/MedicalNewsComponent/Loadable';
+import ContactUsComponent from '../../components/LandingPageComponents/ContactUsComponent/Loadable';
 
 import {
   loadRecomendations,
@@ -78,6 +79,7 @@ export class LandingPage extends React.Component { // eslint-disable-line react/
           this.props.loadNews && 
           <CookingLoader/>
         }
+        <ContactUsComponent/>
 
       </div>
 

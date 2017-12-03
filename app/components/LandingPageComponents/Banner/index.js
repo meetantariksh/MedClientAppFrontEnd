@@ -35,9 +35,6 @@ class Banner extends React.PureComponent { // eslint-disable-line react/prefer-s
                   <a className="nav-link js-scroll-trigger" href="#latestInMedicine">Nature At Its Best</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link js-scroll-trigger" href="#aboutUs">About Us</a>
-                </li>
-                <li className="nav-item">
                   <a className="nav-link js-scroll-trigger" href="#contact">Contact</a>
                 </li>
               </ul>
