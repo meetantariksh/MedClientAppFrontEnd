@@ -13,7 +13,7 @@ class RecomendationComponent extends React.PureComponent { // eslint-disable-lin
   render() {
     return (
       <div>
-        <section id="ourDoctors">
+        <section className="bg-light" id="ourDoctors">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">

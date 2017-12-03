@@ -39,11 +39,36 @@ const makeSelectRecomendationsData = () => createSelector(
   (substate) => substate.get('load_recomendations_data')
 );
 
+
+const makeSelectLoadingNewsHeadLines = () => createSelector(
+  selectLandingPageDomain,
+  (substate) => substate.get('loaading_news_headlines')
+);
+
+const makeSelectLoadNewsHeadLinesComplete = () => createSelector(
+  selectLandingPageDomain,
+  (substate) => substate.get('load_news_headlines_complete')
+);
+
+const makeSelectNewsHeadLinesError = () => createSelector(
+  selectLandingPageDomain,
+  (substate) => substate.get('load_news_headlines_error')
+);
+
+const makeSelectNewsHeadLinesData = () => createSelector(
+  selectLandingPageDomain,
+  (substate) => substate.get('load_news_headlines_data')
+);
+
 export default makeSelectLandingPage;
 export {
   selectLandingPageDomain,
   makeSelectLoadingRecomendations,
   makeSelectLoadRecomendationsComplete,
   makeSelectRecomendationsError,
-  makeSelectRecomendationsData
+  makeSelectRecomendationsData,
+  makeSelectLoadingNewsHeadLines,
+  makeSelectLoadNewsHeadLinesComplete,
+  makeSelectNewsHeadLinesError,
+  makeSelectNewsHeadLinesData
 };
